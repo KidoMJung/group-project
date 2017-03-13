@@ -1,0 +1,20 @@
+/* signup & signout */
+html{
+    color: white;
+    text-align: center;
+    background: url('../img/freddy-castro.jpg') no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    font:600 16px/18px 'Open Sans',sans-serif;
+}
+h2 {
+    left: 0;
+    line-height: 200px;
+    margin: auto;
+    margin-top: -100px;
+    position: absolute;
+    top: 40%;
+    width: 100%;
+}
