@@ -6,5 +6,14 @@ html
         title Signup Succesful
         link(rel='stylesheet prefetch', href='http://fonts.googleapis.com/css?family=Open+Sans:600')
         link(rel='stylesheet', href='/static/css/signup_signout.css')
+        script.
+            $(document).ready(function(){ 
+                $(window).load(function () {
+                    window.setTimeout(function () {
+                        window.location.href='/server/views/login.pug';
+                    }, 5000)
+                })
+            })
     body
         h2 You succesfully signed up a new profile!
+        p You will be redirected to the login page in 5seconds
