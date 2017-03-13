@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-db = new Sequelize(`postgres://${process.env.POSTGRES_USER}:${process.env.POSTGRES_PASSWORD}@localhost/group-project`);
+const db = new Sequelize(`postgres://${process.env.POSTGRES_USER}:${process.env.POSTGRES_PASSWORD}@localhost/group_project`);
 
 // define User Model
 db.User = db.define('user', {
