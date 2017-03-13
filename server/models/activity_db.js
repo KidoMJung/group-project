@@ -1,35 +1,31 @@
+
 const Sequelize = require('sequelize');
-const connectString = '..'
+const db = new Sequelize(`postgres://${process.env.POSTGRES_USER}:${process.env.POSTGRES_PASSWORD}@localhost/group_project`);
 
 
-const db = {
 
-}
-
-
-db.connect = new Sequelize(connectString);
 
 
 //CREATE USER
-db.User = db.connect.define('user', {
+db.User = db.define('user', {
 	name: Sequelize.STRING,
 	password: Sequelize.STRING,
 	email: Sequelize.STRING,
 
 });
 
-db.Activity = db.connect.define('activity', {
+db.Activity = db.define('activity', {
 	name : Sequelize.STRING,
 	cat : Sequelize.INTERGER,
 });
 
 
-db.TimeActual = db.connect.define('timeActual'{
+db.TimeActual = db.define('timeActual'{
 	timeMinutes: Sequelize.STRING,
 });
 
-db.TimeEstimated = db.connect.define('TimeEstimated', 
-	TimeEstimated : db.connect)
+db.TimeEstimated = db.define('TimeEstimated', 
+	TimeEstimated : Sequelize.STRING,
 
 
 db.Calender = db.connect.define('WeekNumber', {
@@ -51,6 +47,20 @@ db.Calender.belongsTo(db.TimeActual);
 
 db.TimeEstimated.hasOne(db.TCalender);
 db.Calender.belongsTo(db.TimeEstimated);
+
+
+db.sync(
+    {force: true}
+)
+    .then(function(db) {
+        const user1 = {
+            name: 'klaas',
+            email: 'klaas@gmail.com',
+            password: 'klaas123'
+        }
+        db.User.create(user1)
+    })
+    .catch( (error) => console.log(error));
 
 
 module.exports = db;
