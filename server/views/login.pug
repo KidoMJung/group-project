@@ -1,0 +1,78 @@
+doctype html
+html(lang='en')
+    head
+        meta(charset='UTF-8')
+        meta(name='viewport', content='width=device-width, initial-scale=1')
+        title Login Page
+        link(rel='stylesheet prefetch', href='http://fonts.googleapis.com/css?family=Open+Sans:600')
+        link(rel='stylesheet', href='/static/css/signup_login.css')
+        script(src="/static/js/jquery-3.1.1.min.js")
+        script.
+            $(document).ready(function(){
+                console.log("doc loaded")
+                $('#submit').click(function(event) {
+                    if($('#user').val().trim().length === 0 || $('#password').val().trim().length === 0) {
+                        event.preventDefault();
+                        $('.error').html("<p>Your username or password is empty.</p>");
+                    }
+                })
+            })
+    //- h2#error-message= message
+    body
+        .login-wrap
+            .login-html
+                div.error=message
+                input#tab-1.sign-in(type='radio', name='tab', checked='')
+                label.tab(for='tab-1') Sign In
+                |  
+                input#tab-2.sign-up(type='radio', name='tab')
+                label.tab(for='tab-2') Sign Up
+                .login-form
+                    form(action='/login', method='post')
+                        .sign-in-htm
+                            .group
+                                label.label(for='user') Username
+                                |  
+                                input#user.input(name='email', required, type='text')
+                            .group
+                                label.label(for='password') Password
+                                |  
+                                input#password.input(name= 'password', required, type='password', data-type='password')
+                            .group
+                                input#check.check(type='checkbox', checked='')
+                                label(for='check')
+                                    span.icon
+                                    |  Keep me Signed in
+                            .group
+                                input.button(type='submit', value='Sign In' id='submit')
+                            .hr
+                            .foot-lnk
+                                a(href='#forgot') Forgot Password?
+                    form(action='/signup', method='post')
+                        .sign-up-htm
+                            .group
+                                label.label(for='user') Username
+                                |  
+                                input#user.input(name='name', type='text')
+                            .group
+                                label.label(for='password') Email Address
+                                |  
+                                input#password.input(name='email', type='text')
+                            .group
+                                label.label(for='password') Password
+                                |  
+                                input#password.input(name= 'password', type='password', required, data-type='password')
+                            .group
+                                label.label(for='pass') Repeat Password
+                                |  
+                                input#password.input(type='password',required, data-type='password')
+                            .group
+                                input.button(type='submit', value='Sign Up' id='submit')
+                            .hr
+                            .foot-lnk
+                                label(for='tab-1') Already Member?
+    //- h2#error-message= message
+
+
+
+
