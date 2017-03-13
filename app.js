@@ -84,7 +84,7 @@ app.post('/login', (request, response) => {
              bcrypt.compare(request.body.password, user.password, (err, result) => {
                  if(result === true){
                     request.session.user = user;
-			        response.redirect('/profile');
+			        response.redirect('profile');
                   }
              });
 		} else {
@@ -93,6 +93,18 @@ app.post('/login', (request, response) => {
 	}, function (error) {
 		response.redirect('/login?message=' + encodeURIComponent("Invalid email or password."));
 	});
+});
+
+// Profile
+app.get('/profile', function (request, response) {
+    const user = request.session.user;
+    if (user === undefined) {
+        repsonse.redirect('/profile?message=' + encodeURIComponent ("Please log in to view your profile"));
+    } else {
+        response.render('profile', {
+            user: user
+        });
+    }     
 });
 
 // Make connection with the server
