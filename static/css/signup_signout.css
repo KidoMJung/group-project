@@ -10,8 +10,21 @@ html{
     font:600 16px/18px 'Open Sans',sans-serif;
 }
 h2 {
+    font-size: 27px;
     left: 0;
     line-height: 200px;
+    margin: auto;
+    margin-top: -100px;
+    position: absolute;
+    top: 40%;
+    width: 100%;
+}
+
+p {
+    font-size: 20px;
+    font
+    left: 0;
+    line-height: 350px;
     margin: auto;
     margin-top: -100px;
     position: absolute;
