@@ -1,0 +1,30 @@
+doctype html
+html(lang='en')
+    head
+        meta(charset='UTF-8')
+        meta(name='viewport', content='width=device-width, initial-scale=1')
+        title Logout Succesful
+        link(rel='stylesheet prefetch', href='http://fonts.googleapis.com/css?family=Open+Sans:600')
+        link(rel='stylesheet', href='/static/css/signup_signout.css')
+        script(src="/static/js/jquery-3.1.1.min.js")
+        script.
+            $(document).ready(function(){ 
+                setTimeout(function () {
+                    window.location.href='/login';
+                }, 1000)
+            })
+    body
+        h2 You have succesfully been logged out. Have a nice day
+        p
+            | You will be directed to the login page in
+            span#countdowntimer 10
+            |  Seconds
+    script(type='text/javascript').
+        var timeleft = 10;
+        var downloadTimer = setInterval(function(){
+        timeleft--;
+        document.getElementById("countdowntimer").textContent = timeleft;
+        if(timeleft <= 0)
+        clearInterval(downloadTimer);
+        },1000);
+

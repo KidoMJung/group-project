@@ -70,16 +70,20 @@ app.get('/login', (request, response) => {
 // Login Input
 app.post('/login', (request, response) => {
     if(request.body.email.length === 0) {
-        response.redirect('/login?message=' + encodeURIComponent("Please fill out your email address."));
+        response.render('login', {
+        message1: "Please fill out your email address."
+    });
         return;
-    }
-    if(request.body.password.length === 0) {
-		response.redirect('/login?message=' + encodeURIComponent("Please fill out your password."));
+    } else if
+    (request.body.password.length === 0) {
+        response.render('login', {
+        message2: "Please fill out your email password."
+    });
 		return;
 	}
 	db.User.findOne({
 		where: {
-			email: request.body.email 
+			email: request.body.email  
 		}
 	}).then(function (user) {
 		if (user) {
