@@ -8,20 +8,10 @@ html(lang='en')
         link(rel='stylesheet', href='/static/css/signup_login.css')
         script(src="/static/js/jquery-3.1.1.min.js")
         script.
-            $(document).ready(function(){
-                console.log("doc loaded")
-                $('#submit').click(function(event) {
-                    if($('#user').val().trim().length === 0 || $('#password').val().trim().length === 0) {
-                        event.preventDefault();
-                        $('.error').html("<p>Your username or password is empty.</p>");
-                    }
-                })
-            })
-    //- h2#error-message= message
     body
         .login-wrap
             .login-html
-                div.error=message
+                div.error=message1
                 input#tab-1.sign-in(type='radio', name='tab', checked='')
                 label.tab(for='tab-1') Sign In
                 |  
@@ -33,11 +23,11 @@ html(lang='en')
                             .group
                                 label.label(for='user') Username
                                 |  
-                                input#user.input(name='email', required, type='text')
+                                input#user.input(name='email', type='text') 
                             .group
                                 label.label(for='password') Password
                                 |  
-                                input#password.input(name= 'password', required, type='password', data-type='password')
+                                input#password.input(name= 'password', type='password', data-type='password')
                             .group
                                 input#check.check(type='checkbox', checked='')
                                 label(for='check')
@@ -71,7 +61,7 @@ html(lang='en')
                             .hr
                             .foot-lnk
                                 label(for='tab-1') Already Member?
-    //- h2#error-message= message
+
 
 
 
