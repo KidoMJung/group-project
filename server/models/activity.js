@@ -3,7 +3,7 @@ const Sequelize = require('sequelize');
 const db = new Sequelize(`postgres://${process.env.POSTGRES_USER}:${process.env.POSTGRES_PASSWORD}@localhost/group_project`);
 
 
-
+ 
 
 
 //CREATE USER

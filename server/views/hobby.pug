@@ -6,4 +6,15 @@ html
 			|Hobby:
 			br
 			input(type='text', name='hobby' placeholder='Add new leisure activity')
-				button(type="submit" formmethod='post') Log	)
+				button(type="submit" formmethod='post') Log	
+			
+			if activity.activity 
+				each activity in Activities
+
+
+
+			 		if cat === 2 
+
+			 			p #{activity:activity}
+			 				button(id='timer' type="start") 00 : 00
+			 		

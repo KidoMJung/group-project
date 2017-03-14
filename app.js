@@ -1,6 +1,8 @@
 const pg = require('pg');
 const express = require('express');
 const db = require(__dirname + '/server/models/username.js');
+const dbA = require(__dirname + '/server/models/activiy.js');
+
 const logger = require('morgan');
 const bodyParser = require('body-parser');
 const session = require('express-session');
@@ -105,6 +107,52 @@ app.get('/profile', function (request, response) {
             user: user
         });
     }     
+});
+
+//ACTIVITIES  || CAT 1 = WORK, CAT 2 = HOBBY, CAT 3 = SPORT, CAT 4 = TRAVEL
+
+app.post('/work', function (request, response) {
+    if(request.session.user !== undefined) {
+        db.Activiy.create({
+            name : req.body.work,
+            cat: 1,
+        })
+    }else{
+        res.redirect('/login')
+    }
+});
+
+app.post('/hobby', function (request, response) {
+    if(request.session.user !== undefined) {
+        db.Activiy.create({
+            name : req.body.hobby,
+            cat: 2,
+        })
+    }else{
+        res.redirect('/login')
+    }
+});
+
+app.post('/sport', function (request, response) {
+    if(request.session.user !== undefined) {
+        db.Activiy.create({
+            name : req.body.sport,
+            cat: 3,
+        })
+    }else{
+        res.redirect('/login')
+    }
+});
+
+app.post('/travel', function (request, response) {
+    if(request.session.user !== undefined) {
+        db.Activiy.create({
+            name : req.body.travel,
+            cat: 4,
+        })
+    }else{
+        res.redirect('/login')
+    }
 });
 
 // Make connection with the server
