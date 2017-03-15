@@ -3,7 +3,7 @@ const Sequelize = require('sequelize');
 const db = new Sequelize(`postgres://${process.env.POSTGRES_USER}:${process.env.POSTGRES_PASSWORD}@localhost/group_project`);
 
 
- 
+
 
 
 //CREATE USER
@@ -58,7 +58,16 @@ db.sync(
             email: 'klaas@gmail.com',
             password: 'klaas123'
         }
+
         db.User.create(user1)
+    }).then(function(db) {
+    	console.log('creating activity')
+    	const activity1 = {
+    		name: 'Cooking',
+    		cat : 2,
+    		
+    	}
+    	db.Activity.create(activity1)
     })
     .catch( (error) => console.log(error));
 

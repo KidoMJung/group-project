@@ -1,7 +1,6 @@
 const pg = require('pg');
 const express = require('express');
-const db = require(__dirname + '/server/models/username.js');
-const dbA = require(__dirname + '/server/models/activiy.js');
+const db = require(__dirname + '/server/models/db.js');
 
 const logger = require('morgan');
 const bodyParser = require('body-parser');
@@ -74,6 +73,7 @@ app.post('/login', (request, response) => {
         message1: "Please fill out your email address."
     });
         return;
+
     } else if
     (request.body.password.length === 0) {
         response.render('login', {
@@ -113,49 +113,115 @@ app.get('/profile', function (request, response) {
     }     
 });
 
-//ACTIVITIES  || CAT 1 = WORK, CAT 2 = HOBBY, CAT 3 = SPORT, CAT 4 = TRAVEL
 
-app.post('/work', function (request, response) {
-    if(request.session.user !== undefined) {
-        db.Activiy.create({
-            name : req.body.work,
-            cat: 1,
+//GET ACTIVITIES
+
+app.get('/work', function (request, response) {
+    const user = request.session.user
+     if(!user)
+        db.Activity.findOne({where: {cat: 2}}
+        ).then( activity => {
+            console.log(activity)
+            response.render('hobby', {activity: activity})
         })
-    }else{
-        res.redirect('/login')
+        
+    else {
+        response.redirect('/login')
+    }
+
+});
+
+app.get('/hobby', function (request, response) {
+    const user = request.session.user
+    if(!user)
+        db.Activity.findOne({where: {cat: 2}}
+        ).then( activity => {
+            console.log(activity)
+            response.render('hobby', {activity: activity})
+        })
+        
+    else {
+        response.redirect('/login')
+    }
+
+});
+
+app.get('/sport', function (request, response) {
+     const user = request.session.user
+    if(!user)
+        db.Activity.findOne({where: {cat: 3}}
+        ).then( activity => {
+            console.log(activity)
+            response.render('sport', {activity: activity})
+        })
+        
+    else {
+        response.redirect('/login')
+    }
+
+});
+
+app.get('/travel', function (request, response) {
+     const user = request.session.user
+    if(!user)
+        db.Activity.findOne({where: {cat: 4}}
+        ).then( activity => {
+            console.log(activity)
+            response.render('travel', {activity: activity})
+        })
+        
+    else {
+        response.redirect('/login')
+    }
+
+});
+
+//ACTIVITIES  || CAT 1 = WORK, CAT 2 = HOBBY, CAT 3 = SPORT, CAT 4 = TRAVEL
+app.post('/work', function (request, response) {
+    if(request.session.user == undefined) {
+        db.Activity.create({
+            name : request.body.work,
+            cat: 1,
+            userId: request.session.user.id,
+        })
+    } else {
+        response.redirect('/login')
     }
 });
 
 app.post('/hobby', function (request, response) {
     if(request.session.user !== undefined) {
-        db.Activiy.create({
-            name : req.body.hobby,
+        db.Activity.create({
+            name : request.body.hobby,
             cat: 2,
+            userId: request.session.user.id
         })
-    }else{
-        res.redirect('/login')
+    } else {
+        response.redirect('/login')
     }
 });
 
 app.post('/sport', function (request, response) {
     if(request.session.user !== undefined) {
-        db.Activiy.create({
-            name : req.body.sport,
+        db.Activity.create({
+            name : request.body.sport,
             cat: 3,
+            userId: request.session.user.id,
         })
-    }else{
-        res.redirect('/login')
+    } else {
+        response.redirect('/login')
     }
 });
 
 app.post('/travel', function (request, response) {
     if(request.session.user !== undefined) {
-        db.Activiy.create({
-            name : req.body.travel,
+        db.Activity.create({
+            name : request.body.travel,
             cat: 4,
+            userId: request.session.user.id,
         })
-    }else{
-        res.redirect('/login')
+    } else {
+        response.redirect('/login')
     }
 });
 

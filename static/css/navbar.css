@@ -4,9 +4,7 @@
 html,
 body {
   height: 100%;
-  background-color: white;
   font-family: 'Quicksand', sans-serif;
-  color: white;
 }
 
 .b-a, .bar, .bar:before, .bar:after {
@@ -21,6 +19,8 @@ body {
 }
 
 .menu-collapsed {
+  background-color: white;
+  color : white;
   transition: all .25s;
   position: fixed;
   top: 10px;
