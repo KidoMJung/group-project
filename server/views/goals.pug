@@ -1,0 +1,29 @@
+doctype html
+html(lang='en')
+    head
+        meta(charset='UTF-8')
+        meta(name='viewport', content='width=device-width, initial-scale=1')
+        title My Profile
+        link(rel='stylesheet', href='/static/css/navbar.css')
+        link(rel='stylesheet', href='/static/css/profile.css') 
+   
+    body
+        .menu-collapsed
+            .bar
+            nav
+                ul
+                    li
+                        span
+                            a.active(href='#') Home
+                    li
+                        span
+                            a(href='/goals') Goals
+                    li
+                        span
+                            a(href='/reports') Reports
+                    li
+                        span
+                            a(href='/about') About
+                    li
+                        span
+                            a(href='/logout') Log Out    
