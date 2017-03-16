@@ -5,6 +5,8 @@ html(lang='en')
         meta(name='viewport', content='width=device-width, initial-scale=1')
         title My Profile
         link(rel='stylesheet', href='/static/css/navbar.css')
+        link(rel='stylesheet', href='/static/css/profile.css') 
+   
     body
         .menu-collapsed
             .bar
@@ -25,36 +27,35 @@ html(lang='en')
                     li
                         span
                             a(href='/logout') Log Out    
+        .slider
+            .items-group
+                .item
+                    a#activityLink(href='/work')
+                        .block
+                            span.circleLight
+                            .text
+                                h2 Work                
+                .item
+                    a#activityLink(href='/hobby')
+                        .block
+                            span.circleLight
+                            .text
+                                h2 Hobby          
+                .item
+                    a#activityLink(href='/sport')
+                        .block
+                            span.circleLight
+                            .text
+                                h2  Sport
+                .item
+                    a#activityLink(href='/travel')
+                        .block
+                            span.circleLight
+                            .text
+                                h2 Travel
+                .navigations
+                    ul.dots
         script(src="/static/js/jquery-3.1.1.min.js")
-        script(src="/static/js/navbar.js") 
+        script(src="/static/js/navbar.js")
+        script(src="/static/js/profile.js")
 
-
-
-//- | div class=&quot;slider&quot;&gt;
-//- .items-group
-//-   .item
-//-     .block
-//-       span.circleLight
-//-       .text
-//-         h2 Work
-//-         p I&grave;m cool card
-//-   .item
-//-     .block
-//-       span.circleLight
-//-       .text
-//-         h2 Hobby
-//-         p I&grave;m cool card
-//-   .item
-//-     .block
-//-       span.circleLight
-//-       .text
-//-         h2 Travel
-//-         p I&grave;m cool card
-//-   .item
-//-     .block
-//-       span.circleLight
-//-       .text
-//-         h2 Hi
-//-         p I&grave;m cool card
-//- .navigations
-//-   ul.dots

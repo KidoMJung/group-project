@@ -1,0 +1,91 @@
+doctype html
+html(lang='en')
+    head
+        meta(charset='UTF-8')
+        meta(name='viewport', content='width=device-width, initial-scale=1')
+        title My Profile
+        //- link(rel='stylesheet', href='/static/css/navbar.css')
+        link(rel='stylesheet', href='/static/css/about.css') 
+    body
+        //- .menu-collapsed
+        //-     .bar
+        //-     nav
+        //-         ul
+        //-             li
+        //-                 span
+        //-                     a.active(href='#') Home
+        //-             li
+        //-                 span
+        //-                     a(href='/goals') Goals
+        //-             li
+        //-                 span
+        //-                     a(href='/reports') Reports
+        //-             li
+        //-                 span
+        //-                     a(href='/about') About
+        //-             li
+        //-                 span
+        //-                     a(href='/logout') Log Out  
+.carousel
+  .carousel__control
+  .carousel__stage
+    .spinner.spinner--left
+      .spinner__face.js-active(data-bg='#27323c')
+        .content(data-type='iceland')
+          .content__left
+            h1
+              | ICELAND
+              br
+              span EUROPE
+          .content__right
+            .content__main
+              p
+                | &ldquo;As I flew north to begin my third circuit of Iceland in four years, I was slightly anxious. The number of visitors to Iceland has doubled in that period, and I feared this might mean a little less magic to go around. At the end of this trip, 6000km later, I&apos;m thrilled to report that the magic levels remain high. It&apos;s found in glorious football victories and Viking chants, kayaking among icebergs, sitting with puffins under the midnight sun and crunching across brand-new lava fields.&rdquo;
+              p &ndash; Carolyn Bain
+            h3.content__index 01
+      .spinner__face(data-bg='#19304a')
+        .content(data-type='china')
+          .content__left
+            h1
+              | CHINA
+              br
+              span ASIA
+          .content__right
+            .content__main
+              p
+                | &ldquo;Its modern face is dazzling, but China is no one-trick pony. The world&apos;s oldest continuous civilisation isn&apos;t all smoked glass and brushed aluminium and while you won&apos;t be tripping over artefacts &ndash; three decades of round-the-clock development and rash town-planning have taken their toll &ndash; rich seams of antiquity await.&rdquo;
+              p &ndash; Damian Harper
+            h3.content__index 02
+      .spinner__face(data-bg='#2b2533')
+        .content(data-type='usa')
+          .content__left
+            h1
+              | USA
+              br
+              span NORTH AMERICA
+          .content__right
+            .content__main
+              p
+                | &ldquo;When it comes to travel, America has always floored me with its staggering range of possibilities. Not many other countries have so much natural beauty &ndash; mountains, beaches, rainforest, deserts, canyons, glaciers &ndash; coupled with fascinating cities to explore, an unrivaled music scene and all the things that make travel so rewarding (friendly locals, great restaurants and farmers markets, and plenty of quirky surprises).&rdquo;
+              p &ndash; Regis St Louis
+            h3.content__index 03
+      .spinner__face(data-bg='#312f2d')
+        .content(data-type='peru')
+          .content__left
+            h1
+              | PERU
+              br
+              span SOUTH AMERICA
+          .content__right
+            .content__main
+              p
+                | &ldquo;For me, Peru is the molten core of South America, a distillation of the oldest traditions and the finest building, weaving and art made by the most sophisticated cultures on the continent. In Peru the wildest landscapes &ndash; from frozen Andean peaks to the deep Amazon &ndash; help us re-forge our connection to the natural world. It is also a cultural stew, where diverse peoples live side by side, negotiating modern life with humor and aplomb. Beyond that, the cuisine alone makes it worth the trip. Every return is rich and surprising.&rdquo;
+              p &ndash; Carolyn McCarthy
+            h3.content__index 04
+div(style='height: 0; width: 0; overflow: hidden')
+  img(src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/215059/peru.jpg')
+  |  
+  img(src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/215059/canada.jpg')
+  img(src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/215059/china.jpg')
+  img(src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/215059/usa.jpg')
+  img(src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/215059/iceland.jpg')
