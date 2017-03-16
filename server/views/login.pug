@@ -18,7 +18,7 @@ html(lang='en')
                 input#tab-2.sign-up(type='radio', name='tab')
                 label.tab(for='tab-2') Sign Up
                 .login-form
-                    form(action='/login', method='post')
+                    form(action='/login', method='post',)
                         .sign-in-htm
                             .group
                                 label.label(for='user') Username
@@ -37,7 +37,7 @@ html(lang='en')
                                 input.button(type='submit', value='Sign In' id='submit')
                             .hr
                             .foot-lnk
-                                a(href='#forgot') Forgot Password?
+                                a(href='/password') Forgot Password?
                     form(action='/signup', method='post')
                         .sign-up-htm
                             .group
@@ -61,8 +61,6 @@ html(lang='en')
                             .hr
                             .foot-lnk
                                 label(for='tab-1') Already Member?
-
-
 
 
 

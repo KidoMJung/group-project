@@ -1,4 +1,4 @@
-doctype html
+serId: req.session.user.iddoctype html
 html(lang='en')
     head
         meta(charset='UTF-8')
@@ -11,14 +11,14 @@ html(lang='en')
             $(document).ready(function(){ 
                 setTimeout(function () {
                     window.location.href='/login';
-                }, 1000)
+                }, 10000)
             })
     body
         h2 You succesfully signed up a new profile!
         p
-            | You will be directed to the login page in
+            | You will be directed to the login page in 
             span#countdowntimer 10
-            |  Seconds
+            |  seconds
     script(type='text/javascript').
         var timeleft = 10;
         var downloadTimer = setInterval(function(){
