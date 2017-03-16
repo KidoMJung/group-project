@@ -189,6 +189,15 @@ app.post('/work', function (request, response) {
     }
 });
 
+
+// op t momeent clickt wordt de naam vd knop mee gegen als data in een post request
+// Stuur ook de tijd mee.
+//daarna vraag je met die naam de act op. 
+//sla vervolgens de tijd op in de tijdtabel.
+//
+
+// row aanmoaken wanneer op button click. 
+// 2 ; om de minuut een update
 app.post('/hobby', function (request, response) {
     if(request.session.user !== undefined) {
         db.Activity.create({
@@ -199,7 +208,11 @@ app.post('/hobby', function (request, response) {
     } else {
         response.redirect('/login')
     }
+
+
+
 });
+
 
 app.post('/sport', function (request, response) {
     if(request.session.user !== undefined) {
@@ -224,6 +237,15 @@ app.post('/travel', function (request, response) {
         response.redirect('/login')
     }
 });
+//
+// row aanmoaken wanneer op button click. 
+// 2 ; om de minuut een update
+
+app.post('/hobby', function (request, response) {
+    db.TimeActual.create({
+
+    })
+})
 
 // Make connection with the server
 app.listen(3000,() => {
