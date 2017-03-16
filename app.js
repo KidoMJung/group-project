@@ -103,7 +103,7 @@ app.post('/login', (request, response) => {
 app.get('/profile', function (request, response) {
     const user = request.session.user;
     if (user === undefined) {
-        repsonse.redirect('/profile?message=' + encodeURIComponent ("Please log in to view your profile"));
+        response.redirect('/profile?message=' + encodeURIComponent ("Please log in to view your profile"));
     } else {
         response.render('profile', {
             user: user
