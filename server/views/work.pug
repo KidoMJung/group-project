@@ -1,9 +1,18 @@
 html
-	title
-		head
-		body
-		form
-			|Work:
-			br
-			input(type='text', name='work' placeholder='Add new work activity')
-				button(type="submit" formmethod='post') Log	)
+	head
+
+	body
+		form(action='/word', method='POST',)
+			input(type='text', name='work' placeholder='Add new sport activity')
+			button(type="submit" formmethod='post') Log	
+			
+		if activity
+			p
+				button(id='toggle' ) #{activity.name} 
+					span#timer Start
+			
+			
+script(src="../static/js/stopwatch.js")
+script(src="../static/js/main.js")
+
+

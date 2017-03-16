@@ -1,9 +1,18 @@
 html
-	title
-		head
-		body
-		form
-			|Hobby:
-			br
+	head
+
+	body
+		form(action='/hobby', method='POST',)
 			input(type='text', name='hobby' placeholder='Add new leisure activity')
-				button(type="submit" formmethod='post') Log	)
+			button(type="submit" formmethod='post') Log	
+			
+		if activity
+			p
+				button(id='toggle' ) #{activity.name} 
+					span#timer Start
+			
+			
+script(src="../static/js/stopwatch.js")
+script(src="../static/js/main.js")
+
+
