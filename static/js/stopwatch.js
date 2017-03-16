@@ -1,5 +1,4 @@
 
-console.log(watch)
 function Stopwatch(elem) {
 	
 //is een private variable die toegankleijk is voor watch terijl de scope loacl is. 
@@ -26,30 +25,21 @@ function Stopwatch(elem) {
 	}
 	function timeFormatter(timeInMilliseconds){
 		var time = new Date(timeInMilliseconds); //alleen local
-		// var hours = (time.getMinutes().toString()) % 60;
+		var hours = (time.getHours()-1).toString();
 		var minutes = time.getMinutes().toString();
-		var seconds = time.getSeconds().toString();
-		var milliseconds = time.getMilliseconds().toString();
 
 
-		// if (hours.length < 2) {
-		// 	hours = '0' + hours;
-		// }
+
+		if (hours.length < 2) {
+			hours = '0' + hours;
+		}
 
 		if (minutes.length < 2) {
 			minutes = '0' + minutes;
 		}
 
-		if (seconds.length < 2) {
-			seconds = '0' + seconds;
 
-		while (milliseconds.length < 3) {
-			milliseconds = '0' + milliseconds
-		}	
-
-		return minutes + ' : ' + seconds + ' . ' + milliseconds;
-
-		}
+		return hours + ' : ' + minutes
 
 	}
 
@@ -77,6 +67,6 @@ function Stopwatch(elem) {
 }
 
 
-var watch = new Stopwatch();
+// var watch = new Stopwatch();
 
 

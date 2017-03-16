@@ -20,7 +20,8 @@ body {
 }
 
 .menu-collapsed {
-  color: white; 
+  background-color: white;
+  color : white;
   transition: all .25s;
   position: fixed;
   top: 10px;
