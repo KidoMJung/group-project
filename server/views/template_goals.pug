@@ -1,0 +1,26 @@
+html
+	head
+
+	body
+		form(action='/hobby', method='POST',)
+			input(type='text', name='hobby' placeholder='Add new leisure activity')
+			button(type="submit" formmethod='post') Log	
+			
+		if activities
+			each activity in activities
+				p
+					button(class='goalButtons' id='goalButton'+activity.id) #{activity.name} 
+						span#timer Start
+			
+
+
+
+			
+script(src="../static/js/stopwatch.js")
+script(src="../static/js/main.js")
+script.
+	$('button').on('click', function() {
+		console.log('clicked on button')    
+	});
+
+

@@ -142,17 +142,19 @@ app.get('/work', function (request, response) {
 
 });
 
+
+//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  REDIRECTED TO HOBBY FOR DEV PURPOSES!!!!!!!!!!
 app.get('/hobby', function (request, response) {
     const user = request.session.user
     if(!user)
-        db.Activity.findOne({where: {cat: 2}}
-        ).then( activity => {
-            console.log(activity)
-            response.render('hobby', {activity: activity})
+        db.Activity.findAll({where: {cat: 2}}
+        ).then( activities => {
+            console.log(activities)
+            response.render('hobby', {activities: activities})
         })
         
     else {
-        response.redirect('/login')
+        response.redirect('/hobby')
     }
 
 });
@@ -201,26 +203,25 @@ app.post('/work', function (request, response) {
 });
 
 
-// op t momeent clickt wordt de naam vd knop mee gegen als data in een post request
-// Stuur ook de tijd mee.
+//op t momeent clickt wordt de naam vd knop mee gegen als data in een post request
+//Stuur ook de tijd mee.
 //daarna vraag je met die naam de act op. 
 //sla vervolgens de tijd op in de tijdtabel.
 //
 
 // row aanmoaken wanneer op button click. 
 // 2 ; om de minuut een update
+
 app.post('/hobby', function (request, response) {
     if(request.session.user !== undefined) {
         db.Activity.create({
             name : request.body.hobby,
             cat: 2,
-            userId: request.session.user.id
+            userId: request.session.user.id,
         })
     } else {
-        response.redirect('/login')
+        response.redirect('/hobby')
     }
-
-
 
 });
 
