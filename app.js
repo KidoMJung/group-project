@@ -155,6 +155,7 @@ app.get('/hobby', function (request, response) {
         
     else {
         response.redirect('/hobby')
+        console.log('No session dickhead')
     }
 
 });
@@ -219,8 +220,10 @@ app.post('/hobby', function (request, response) {
             cat: 2,
             userId: request.session.user.id,
         })
+        console.log('ccreated new activity')
     } else {
         response.redirect('/hobby')
+        console.log('no session dickheads')
     }
 
 });
