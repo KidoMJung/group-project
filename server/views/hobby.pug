@@ -6,12 +6,24 @@ html
 			input(type='text', name='hobby' placeholder='Add new leisure activity')
 			button(type="submit" formmethod='post') Log	
 			
-		if activity
-			p
-				button(id='toggle' ) #{activity.name} 
-					span#timer Start
-			
-			
+		if activities
+		ul(id='activityList')
+			- for(let i = 0; i < activities.length; i++){	
+					li.buttons
+						button(id='toggle' + i) #{activities[i].name} 
+							span(id='timer'+i) Start
+				
+			-}
+				
+
+script.
+	var activitiesLength = #{activities.length};
+	var ListItems = []
+		for (i = 0; i < ListItems.length ; i++){
+			console.log(Li)
+			}
+
+
 script(src="../static/js/stopwatch.js")
 script(src="../static/js/main.js")
 

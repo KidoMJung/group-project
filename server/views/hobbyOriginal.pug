@@ -1,0 +1,28 @@
+html
+	head
+
+	body
+		form(action='/hobby', method='POST',)
+			input(type='text', name='hobby' placeholder='Add new leisure activity')
+			button(type="submit" formmethod='post') Log	
+			
+		if activities
+			- for(let i = 0; i < activities.length; i++){
+				p
+					button(id='toggle' + i) #{activities[i].name} 
+						span(id='timer'+i) Start
+			-}
+			
+			// - for (let i = ; i < #toggle[i].length}; i++) {
+			// 	buttonView.push(document.getElementById(toggle[i])) 
+
+script.
+	var activitiesLength = #{activities.length};
+	//- var buttonSView = []
+	//- for (let i = ; i < #{toggle[i].length}; i++) {
+	//- 			buttonView.push(document.getElementById(toggle[i])) 
+
+script(src="../static/js/stopwatch.js")
+script(src="../static/js/main.js")
+
+

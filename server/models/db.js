@@ -13,17 +13,18 @@ db.User = db.define('user', {
     password: Sequelize.STRING
 });
 
-db.Activity = db.define('activity', {
+db.Activity = db.define('activities', {
 	name : Sequelize.STRING,
 	cat : Sequelize.INTEGER,
+    userId: Sequelize.INTEGER
 });
 
 db.TimeActual = db.define('timeActual', {
 	timeMinutes: Sequelize.STRING,
 });
 
-db.TimeEstimated = db.define('timeEstimated', {
-	TimeEstimated : Sequelize.STRING,
+db.Goals = db.define('goals', {
+	name : Sequelize.STRING,
 });
 
 db.Calender = db.define('weekNumber', {
@@ -37,14 +38,14 @@ db.Activity.belongsTo(db.User)
 db.Activity.hasOne(db.TimeActual);
 db.TimeActual.belongsTo(db.Activity);
 
-db.Activity.hasOne(db.TimeEstimated);
-db.TimeEstimated.belongsTo(db.Activity);
+db.Activity.hasOne(db.Goals);
+db.Goals.belongsTo(db.Activity);
 
 db.TimeActual.hasOne(db.Calender);
 db.Calender.belongsTo(db.TimeActual);
 
-db.TimeEstimated.hasOne(db.Calender);
-db.Calender.belongsTo(db.TimeEstimated);
+db.Goals.hasOne(db.Calender);
+db.Calender.belongsTo(db.Goals);
 
 
 db.sync(
@@ -57,13 +58,21 @@ db.sync(
             password: 'klaas123'
         }
         db.User.create(user1)
-    }).then(function(user1) {
+    })
+    .then(function(user1) {
         const activity1 = {
             name: 'Cooking',
             cat: 2,
 
         }
         db.Activity.create(activity1)
+
+        const activity2 = {
+            name: 'Baking',
+            cat: 2,
+
+        }
+        db.Activity.create(activity2)
     })
     .catch( (error) => console.log(error));
 
