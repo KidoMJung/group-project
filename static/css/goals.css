@@ -1,9 +1,14 @@
+body {
+  background: url("../img/profile_nightsky.jpg") no-repeat center;
+  background-size: cover; }
+
 h1 {
   font-size: 25px;
   text-align: left;
   text-transform: capitalize; }
 
 .service-box {
+  opacity: 0.8;
   position: relative;
   overflow: hidden;
   margin-bottom: 10px;
@@ -52,7 +57,7 @@ h1 {
   font-weight: normal; }
 
 .service-box .service-icon .front-content h3 {
-  font-size: 15px;
+  font-size: 30px;
   color: #fff;
   text-align: center;
   margin-bottom: 15px;
@@ -116,12 +121,12 @@ h1 {
   width: 100%; }
 
 .what {
-  color: #aaa;
+  color: #fff;
   font-size: 14px; }
 
 .time {
   padding-top: 10px;
-  color: #aaa;
+  color: #fff;
   font-size: 14px; }
 
 .input {
@@ -133,6 +138,6 @@ h1 {
   display: block; }
 
 .input_time {
-  margin-bottom: 10px; }
+  margin-bottom: 20px; }
 
 /*# sourceMappingURL=goals.css.map */

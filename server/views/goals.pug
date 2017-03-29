@@ -11,15 +11,15 @@ html(lang='en')
 
     body
         .menu-collapsed
-            .bar.navbar_goals
+            .bar
             nav
                 ul
                     li
                         span
-                            a.active(href='#') Home
+                            a.active(href='/profile') Home
                     li
                         span
-                            a(href='/goals') Goals
+                            a(href='#') Goals
                     li
                         span
                             a(href='/reports') Reports
@@ -34,71 +34,75 @@ html(lang='en')
           .row.col-sm-10.center-block
             .col-md-offset-2.col-md-4
               .service-box
-                .service-icon.orange(style='border: ridge 5px;')
+                .service-icon.orange(style='border: ridge 2px;')
                   .front-content
                     i.fa.fa-trophy
                     h3.panel-title Work
-                .service-content(style='border: ridge 5px;')
-                  form(action='/work_goals', method='post' role='form', novalidate='true')
+                .service-content(style='border: ridge 2px;')
+                  form(action='/goals', method='post' role='form', novalidate='true')
+                    input(type='hidden', name='goalCategory', value='1')
                     .col-xs-2
                         label.what What are you working on ?
-                        textarea.input(type='text', placeholder='for example: final group project')
+                        textarea.input(type='text', name='goalName', placeholder='for example: final group project')
                             |
                     .col-xs-2
                         label.time Estimated spending time ?
-                        input.input.input_time(type='text', placeholder='for example: 2hours a week ')
+                        input.input.input_time(type='text', name='time', placeholder='for example: 2hours a week ')
                     .submit-group
                         input.button(type='submit', value='+' id='submit')
             .col-md-4
               .service-box
-                .service-icon.yellow(style='border: ridge 5px;')
+                .service-icon.yellow(style='border: ridge 2px;')
                   .front-content
                     i.fa.fa-anchor
                     h3.panel-title Hobby
-                .service-content(style='border: ridge 5px;')
-                  form(action='/work_goals', method='post' role='form', novalidate='true')
+                .service-content(style='border: ridge 2px;')
+                  form(action='/goals', method='post' role='form', novalidate='true')
+                    input(type='hidden', name='goalCategory', value='2')
                     .col-xs-2
                         label.what What hobby are you working on ?
-                        textarea.input(type='text', placeholder='for example: guitar')
+                        textarea.input(type='text', name='goalName', placeholder='for example: guitar', required='')
                             |
                     .col-xs-2
                         label.time Estimated spending time ?
-                        input.input.input_time(type='text', placeholder='for example: 2hours a week ')
+                        input.input.input_time(type='text', name='time', placeholder='for example: 2hours a week ', required='')
                     .submit-group
                         input.button(type='submit', value='+' id='submit')
           .row.col-sm-10.center-block
             .col-md-offset-2.col-md-4
               .service-box
-                .service-icon.green(style='border: ridge 5px;')
+                .service-icon.green(style='border: ridge 2px;')
                   .front-content
                     i.fa.fa-trophy
                     h3.panel-title Sport
-                .service-content(style='border: ridge 5px;')
-                  form(action='/work_goals', method='post' role='form', novalidate='true')
+                .service-content(style='border: ridge 2px;')
+                  form(action='/goals', method='post' role='form', novalidate='true')
+                    input(type='hidden', name='goalCategory', value='3')
                     .col-xs-2
                         label.what What are kind of sport you working on ?
-                        textarea.input(type='text', placeholder='for example: swimming')
+                        textarea.input(type='text', name='goalName', placeholder='for example: swimming')
                             |
                     .col-xs-2
                         label.time Estimated spending time ?
-                        input.input.input_time(type='text', placeholder='for example: 2hours a week ')
+                        input.input.input_time(type='text', name='time', placeholder='for example: 2hours a week ')
                     .submit-group
                         input.button(type='submit', value='+' id='submit')
             .col-md-4
               .service-box
-                .service-icon.blue(style='border: ridge 5px;')
+                .service-icon.blue(style='border: ridge 2px;')
                   .front-content
                     i.fa.fa-paper-plane-o
                     h3.panel-title Travel
-                .service-content(style='border: ridge 5px;')
-                  form(action='/work_goals', method='post' role='form', novalidate='true')
+                .service-content(style='border: ridge 2px;')
+                  form(action='/goals', method='post' role='form', novalidate='true')
+                    input(type='hidden', name='goalCategory', value='4')
                     .col-xs-2
                         label.what From where to where ?
-                        textarea.input(type='text', placeholder='for example: Amsterdam to Utrecht')
+                        textarea.input(type='text', placeholder='for example: Amsterdam to Utrecht', required='')
                             |
                     .col-xs-2
                         label.time Estimated spending time ?
-                        input.input.input_time(type='text', placeholder='for example: 1hour every day for 5days p.w. ')
+                        input.input.input_time(type='text', placeholder='for example: 1hour every day for 5days p.w. ', name='traveltime', required='')
                     .submit-group
                         input.button(type='submit', value='+' id='submit')
 
