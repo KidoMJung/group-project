@@ -20,8 +20,6 @@ body {
 }
 
 .menu-collapsed {
-  background-color: white;
-  color : white;
   transition: all .25s;
   position: fixed;
   top: 10px;
@@ -121,4 +119,8 @@ h3 {
 p {
   line-height: 160%;
   letter-spacing: 1px;
+}
+
+.navbar_goals, .navbar_goals:before, .navbar_goals:after {
+  background-color: black;
 }

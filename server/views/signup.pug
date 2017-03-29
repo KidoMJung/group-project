@@ -1,4 +1,4 @@
-serId: req.session.user.iddoctype html
+//- serId: req.session.user.iddoctype html ??? wat is dit?
 html(lang='en')
     head
         meta(charset='UTF-8')
@@ -11,16 +11,16 @@ html(lang='en')
             $(document).ready(function(){ 
                 setTimeout(function () {
                     window.location.href='/login';
-                }, 10000)
+                }, 5000)
             })
     body
         h2 You succesfully signed up a new profile!
         p
             | You will be directed to the login page in 
-            span#countdowntimer 10
+            span#countdowntimer 5
             |  seconds
     script(type='text/javascript').
-        var timeleft = 10;
+        var timeleft = 5;
         var downloadTimer = setInterval(function(){
         timeleft--;
         document.getElementById("countdowntimer").textContent = timeleft;
