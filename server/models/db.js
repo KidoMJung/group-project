@@ -16,6 +16,7 @@ db.User = db.define('user', {
 db.Activity = db.define('activities', {
 	name : Sequelize.STRING,
 	cat : Sequelize.INTEGER,
+    userId: Sequelize.INTEGER
 });
 
 db.TimeActual = db.define('timeActual', {
