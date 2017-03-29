@@ -11,13 +11,13 @@ html(lang='en')
             $(document).ready(function(){ 
                 setTimeout(function () {
                     window.location.href='/login';
-                }, 1000)
+                }, 500)
             })
     body
         h2 You have succesfully been logged out. Have a nice day
         p
             | You will be directed to the login page in
-            span#countdowntimer 10
+            span#countdowntimer 5
             |  Seconds
     script(type='text/javascript').
         var timeleft = 10;

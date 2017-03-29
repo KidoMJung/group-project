@@ -48,7 +48,7 @@ app.post('/signup', (request, response) => {
 })
 
 // Login
-app.get('/', function (request, response) {
+app.get('/', (request, response) => {
     response.redirect('/login');
 });
 
@@ -59,7 +59,6 @@ app.get('/login', (request, response) => {
 });
 
 app.get('/login', (request, response) => {
-    console.log('werkt app.get login.pug?')
     response.render('login', {
         message: request.query.message,
         user: request.session.user
@@ -103,9 +102,9 @@ app.post('/login', (request, response) => {
 
 // Profile
 app.get('/profile', function (request, response) {
-    const user = request.session.user;
+    user = request.session.user;
     if (user === undefined) {
-        response.redirect('/profile?message=' + encodeURIComponent ("Please log in to view your profile"));
+        response.redirect('/login?message=' + encodeURIComponent ("Please log in to view your profile"));
     } else {
         response.render('profile', {
             user: user
@@ -113,12 +112,24 @@ app.get('/profile', function (request, response) {
     }     
 });
 
+// Goals
+app.get('/goals', (request, response) => {
+    user = request.session.user
+    if (user === undefined) {
+        response.redirect('/login')
+    }
+    else {
+        response.render('goals')
+    }
+});
+
+
 
 //GET ACTIVITIES
 
 app.get('/work', function (request, response) {
     const user = request.session.user
-     if(!user)
+     if(user)
         db.Activity.findOne({where: {cat: 2}}
         ).then( activity => {
             console.log(activity)
