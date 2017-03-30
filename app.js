@@ -41,7 +41,8 @@ app.post('/signup', (request, response) => {
             name: request.body.name,
             email: request.body.email,
             password: hash
-        }).then( f =>{
+        }).then( (user) =>{
+            request.session.user = user;
             response.redirect('signup')
         })
     })
@@ -146,7 +147,7 @@ app.get('/work', function (request, response) {
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  REDIRECTED TO HOBBY FOR DEV PURPOSES!!!!!!!!!!
 app.get('/hobby', function (request, response) {
     const user = request.session.user
-    if(!user)
+    if(user)
         db.Activity.findAll({where: {cat: 2}}
         ).then( activities => {
             console.log(activities)
@@ -214,7 +215,8 @@ app.post('/work', function (request, response) {
 // 2 ; om de minuut een update
 
 app.post('/hobby', function (request, response) {
-    if(request.session.user !== undefined) {
+    var user = request.session.user
+    if(user) {
         db.Activity.create({
             name : request.body.hobby,
             cat: 2,
@@ -223,6 +225,7 @@ app.post('/hobby', function (request, response) {
         console.log('ccreated new activity')
     } else {
         response.redirect('/hobby')
+        console.log('//////////////////////////////////')
         console.log('no session dickheads')
     }
 
@@ -252,14 +255,33 @@ app.post('/travel', function (request, response) {
         response.redirect('/login')
     }
 });
-//
-// row aanmoaken wanneer op button click. 
-// 2 ; om de minuut een update
 
-app.post('/hobby', function (request, response) {
-    db.TimeActual.create({
+app.post('/hobbyGoal', function(request, response){
+    //uitdaging zorg dat de ajax request wordt gelogd
 
-    })
+    // for(let i = 0; i < request.body.timers.length; i++){
+    //     db.Activity.findOne({name: request.body.timers[i].activityName}, {
+    //         include: [db.TimeActual]
+    //     })
+    //     .then((activity) => {
+    //         console.log('activity')
+    //         console.log(activity)
+
+    //         //als activity nog timeactual heeft creer er 1
+    //         if(activity.timeActual !== null || activity.timeActual !== undefined){
+    //             db.TimeActual.create({
+    //                 timeMinutes: request.body.timers[i],
+    //                 activityId: activity.id
+    //             })
+    //         }
+    //         //anders update het
+    //         else {
+    //             activity.timeActual.update({
+    //                 timeMinutes: request.body.timers[i]
+    //             })
+    //         }
+    //     })
+    // }
 })
 
 // Make connection with the server

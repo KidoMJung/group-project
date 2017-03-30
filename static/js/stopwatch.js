@@ -10,7 +10,7 @@ function Stopwatch(elem) {
 //private funtions
 
 	function update(){
-		console.log(this)
+		// console.log(this)
 		if (this.isOn) {
 			time += delta();
 		}
@@ -66,7 +66,9 @@ function Stopwatch(elem) {
 	};
 }
 
-
+setInterval(function(){
+	
+}, 60000)
 // var watch = new Stopwatch();
 
 
