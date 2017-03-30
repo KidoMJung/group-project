@@ -3,16 +3,40 @@ html
 
 	body
 		form(action='/travel', method='POST',)
-			input(type='text', name='travel' placeholder='Add new sport activity')
+			input(type='text', name='travel' placeholder='Add new leisure activity')
 			button(type="submit" formmethod='post') Log	
 			
-		if activity
-			p
-				button(id='toggle' ) #{activity.name} 
-					span#timer Start
-			
-			
+		if activities
+		ul(id='activityList')
+			- for(let i = 0; i < activities.length; i++){	
+					li.buttons
+						button(id='toggle' + i, data-name=activities[i].name) #{activities[i].name} 
+							span(id='timer'+i) Start
+				
+			-}
+				
+
+script(src="../static/js/jquery-3.1.1.min.js")
+script.
+	var activitiesLength = #{activities.length};
+	var ListItems = []
+		for (i = 0; i < ListItems.length ; i++){
+			console.log(Li)
+		}
+
+	setInterval(function(){
+		var timers = []
+		for(var i = 0; i < !{activities.length}; i++){
+			timers.push({
+				timer: document.getElementById('timer'+1).innerHTML,
+				activityName: $('#toggle'+i).data('name')
+			})
+		}
+		console.log('setInterval')
+		console.log(timers)
+		$.post('/hobbyGoal', {timers: timers})
+	}, 1000)
+
+
 script(src="../static/js/stopwatch.js")
 script(src="../static/js/main.js")
-
-
