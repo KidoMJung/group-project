@@ -23,8 +23,11 @@ db.TimeActual = db.define('timeActual', {
 	timeMinutes: Sequelize.STRING,
 });
 
-db.Goals = db.define('goals', {
-	name : Sequelize.STRING,
+db.Goal = db.define('goal', {
+    // name: Sequelize.STRING,
+    // cat: Sequelize.INTEGER,
+    time: Sequelize.INTEGER,
+    // userId: Sequelize.INTEGER
 });
 
 db.Calender = db.define('weekNumber', {
@@ -38,14 +41,18 @@ db.Activity.belongsTo(db.User)
 db.Activity.hasOne(db.TimeActual);
 db.TimeActual.belongsTo(db.Activity);
 
-db.Activity.hasOne(db.Goals);
-db.Goals.belongsTo(db.Activity);
+db.Activity.hasOne(db.Goal);
+db.Goal.belongsTo(db.Activity);
 
 db.TimeActual.hasOne(db.Calender);
 db.Calender.belongsTo(db.TimeActual);
 
-db.Goals.hasOne(db.Calender);
-db.Calender.belongsTo(db.Goals);
+// db.Goals.hasOne(db.Calender);
+// db.Calender.belongsTo(db.Goals);
+
+db.User.hasMany(db.Goal)
+db.Goal.belongsTo(db.User)
+
 
 
 db.sync(

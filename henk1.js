@@ -112,7 +112,7 @@ app.get('/profile', function (request, response) {
     }     
 });
 
-// Goals
+// // Goals
 app.get('/goals', (request, response) => {
     user = request.session.user
     if (user === undefined) {
@@ -131,19 +131,73 @@ app.post('/goals', (request, response) => {
         response.redirect('/login')
     }
     else {
-        db.Goal.create({
-            time: request.body.time,
-        })
-        .then( (goal) => {
-            goal.createActivity({
-                name: request.body.goalName,
-                cat: request.body.goalCategory, 
-                userId: request.session.user.id,
-                goalId: goal.id
-            })
+        let newGoal = db.Goal.create({
+            name: request.body.wor,
+            worktime: request.body.worktime
         })
     }
+})
+
+app.post('/hobby', function (request, response) {
+    if(request.session.user !== undefined) {
+        db.Activity.create({
+            name : request.body.hobby,
+            cat: 2,
+            userId: request.session.user.id,
+        })
+        console.log('ccreated new activity')
+    } else {
+        response.redirect('/hobby')
+        console.log('no session dickheads')
+    }
+
 });
+
+
+app.post('/hobby_goals', (request, response) => {
+    user = request.session.user;
+    console.log(request.session.user);
+    console.log(request.body);
+    if (user === undefined) {
+        response.redirect('/login')
+    }
+    else {
+        let newhobbyGoal = db.hobbyGoal.create({
+            hobbygoal: request.body.hobbygoal,
+            hobbytime: request.body.hobbytime
+        })
+    }
+})
+
+app.post('/sport_goals', (request, response) => {
+    user = request.session.user;
+    console.log(request.session.user);
+    console.log(request.body);
+    if (user === undefined) {
+        response.redirect('/login')
+    }
+    else {
+        let newsportGoal = db.sportGoal.create({
+            sportgoal: request.body.sportgoal,
+            sporttime: request.body.sporttime
+        })
+    }
+})
+
+app.post('/travel_goals', (request, response) => {
+    user = request.session.user;
+    console.log(request.session.user);
+    console.log(request.body);
+    if (user === undefined) {
+        response.redirect('/login')
+    }
+    else {
+        let newtravelGoal = db.travelGoal.create({
+            travelgoal: request.body.travelgoal,
+            traveltime: request.body.traveltime
+        })
+    }
+})
 
 
 //GET ACTIVITIES
