@@ -41,7 +41,8 @@ app.post('/signup', (request, response) => {
             name: request.body.name,
             email: request.body.email,
             password: hash
-        }).then( f =>{
+        }).then( (user) =>{
+            request.session.user = user;
             response.redirect('signup')
         })
     })
@@ -151,10 +152,10 @@ app.post('/goals', (request, response) => {
 app.get('/work', function (request, response) {
     const user = request.session.user
      if(user)
-        db.Activity.findOne({where: {cat: 2}}
-        ).then( activity => {
-            console.log(activity)
-            response.render('hobby', {activity: activity})
+        db.Activity.findAll({where: {cat: 1}}
+        ).then( activities => {
+            console.log(activities)
+            response.render('work', {activities: activities})
         })
         
     else {
@@ -167,7 +168,7 @@ app.get('/work', function (request, response) {
 //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  REDIRECTED TO HOBBY FOR DEV PURPOSES!!!!!!!!!!
 app.get('/hobby', function (request, response) {
     const user = request.session.user
-    if(!user)
+    if(user)
         db.Activity.findAll({where: {cat: 2}}
         ).then( activities => {
             console.log(activities)
@@ -175,7 +176,7 @@ app.get('/hobby', function (request, response) {
         })
         
     else {
-        response.redirect('/hobby')
+        response.redirect('/login')
         console.log('No session dickhead')
     }
 
@@ -183,11 +184,11 @@ app.get('/hobby', function (request, response) {
 
 app.get('/sport', function (request, response) {
      const user = request.session.user
-    if(!user)
-        db.Activity.findOne({where: {cat: 3}}
-        ).then( activity => {
-            console.log(activity)
-            response.render('sport', {activity: activity})
+    if(user)
+        db.Activity.findall({where: {cat: 3}}
+        ).then( activities => {
+            console.log(activities)
+            response.render('sport', {activities: activities})
         })
         
     else {
@@ -198,11 +199,11 @@ app.get('/sport', function (request, response) {
 
 app.get('/travel', function (request, response) {
      const user = request.session.user
-    if(!user)
+    if(user)
         db.Activity.findOne({where: {cat: 4}}
         ).then( activity => {
-            console.log(activity)
-            response.render('travel', {activity: activity})
+            console.log(activities)
+            response.render('travel', {activities: activities})
         })
         
     else {
@@ -212,16 +213,23 @@ app.get('/travel', function (request, response) {
 });
 
 //ACTIVITIES  || CAT 1 = WORK, CAT 2 = HOBBY, CAT 3 = SPORT, CAT 4 = TRAVEL
+
+
 app.post('/work', function (request, response) {
-    if(request.session.user == undefined) {
+    var user = request.session.user
+    if(user) {
         db.Activity.create({
             name : request.body.work,
             cat: 1,
             userId: request.session.user.id,
         })
+        console.log('ccreated new activity')
     } else {
         response.redirect('/login')
+        console.log('//////////////////////////////////')
+        console.log('no session dickheads')
     }
+
 });
 
 
@@ -235,7 +243,8 @@ app.post('/work', function (request, response) {
 // 2 ; om de minuut een update
 
 app.post('/hobby', function (request, response) {
-    if(request.session.user !== undefined) {
+    var user = request.session.user
+    if(user) {
         db.Activity.create({
             name : request.body.hobby,
             cat: 2,
@@ -244,43 +253,78 @@ app.post('/hobby', function (request, response) {
         console.log('ccreated new activity')
     } else {
         response.redirect('/hobby')
+        console.log('//////////////////////////////////')
         console.log('no session dickheads')
     }
 
 });
 
 
+
 app.post('/sport', function (request, response) {
-    if(request.session.user !== undefined) {
+    var user = request.session.user
+    if(user) {
         db.Activity.create({
             name : request.body.sport,
             cat: 3,
             userId: request.session.user.id,
         })
+        console.log('ccreated new activity')
     } else {
         response.redirect('/login')
+        console.log('//////////////////////////////////')
+        console.log('no session dickheads')
     }
+
 });
 
+
+
+
 app.post('/travel', function (request, response) {
-    if(request.session.user !== undefined) {
+    var user = request.session.user
+    if(user) {
         db.Activity.create({
             name : request.body.travel,
             cat: 4,
             userId: request.session.user.id,
         })
+        console.log('ccreated new activity')
     } else {
         response.redirect('/login')
+        console.log('//////////////////////////////////')
+        console.log('no session dickheads')
     }
+
 });
-//
-// row aanmoaken wanneer op button click. 
-// 2 ; om de minuut een update
 
-app.post('/hobby', function (request, response) {
-    db.TimeActual.create({
 
-    })
+app.post('/hobbyGoal', function(request, response){
+    //uitdaging zorg dat de ajax request wordt gelogd
+
+    // for(let i = 0; i < request.body.timers.length; i++){
+    //     db.Activity.findOne({name: request.body.timers[i].activityName}, {
+    //         include: [db.TimeActual]
+    //     })
+    //     .then((activity) => {
+    //         console.log('activity')
+    //         console.log(activity)
+
+    //         //als activity nog timeactual heeft creer er 1
+    //         if(activity.timeActual !== null || activity.timeActual !== undefined){
+    //             db.TimeActual.create({
+    //                 timeMinutes: request.body.timers[i],
+    //                 activityId: activity.id
+    //             })
+    //         }
+    //         //anders update het
+    //         else {
+    //             activity.timeActual.update({
+    //                 timeMinutes: request.body.timers[i]
+    //             })
+    //         }
+    //     })
+    // }
 })
 
 // Make connection with the server
