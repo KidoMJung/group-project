@@ -224,6 +224,7 @@ app.post('/work', function (request, response) {
             userId: request.session.user.id,
         })
         console.log('ccreated new activity')
+        response.redirect('/work')
     } else {
         response.redirect('/login')
         console.log('//////////////////////////////////')
@@ -270,6 +271,7 @@ app.post('/sport', function (request, response) {
             userId: request.session.user.id,
         })
         console.log('ccreated new activity')
+        response.redirect('/sport')
     } else {
         response.redirect('/login')
         console.log('//////////////////////////////////')
@@ -290,6 +292,7 @@ app.post('/travel', function (request, response) {
             userId: request.session.user.id,
         })
         console.log('ccreated new activity')
+        response.redirect('/travel')
     } else {
         response.redirect('/login')
         console.log('//////////////////////////////////')
