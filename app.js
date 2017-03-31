@@ -304,30 +304,39 @@ app.post('/travel', function (request, response) {
 
 app.post('/hobbyGoal', function(request, response){
     //uitdaging zorg dat de ajax request wordt gelogd
+    // console.log(request.body)
+    // console.log(JSON.parse(request.body.timers))
+    const timers = JSON.parse(request.body.timers)
 
-    // for(let i = 0; i < request.body.timers.length; i++){
-    //     db.Activity.findOne({name: request.body.timers[i].activityName}, {
-    //         include: [db.TimeActual]
-    //     })
-    //     .then((activity) => {
-    //         console.log('activity')
-    //         console.log(activity)
+    for(let i = 0; i < timers.length; i++){
+        db.Activity.findOne({name: timers[i].activityName, include: [db.TimeActual]})
+        .then((activity) => {
+            console.log('timers[i]/activity')
+            // console.log(timers[i])
+            console.log(activity.timeActual)
+            // console.log('activity.timeActual')
+            // console.log(activity.timeActual)
 
-    //         //als activity nog timeactual heeft creer er 1
-    //         if(activity.timeActual !== null || activity.timeActual !== undefined){
-    //             db.TimeActual.create({
-    //                 timeMinutes: request.body.timers[i],
-    //                 activityId: activity.id
-    //             })
-    //         }
-    //         //anders update het
-    //         else {
-    //             activity.timeActual.update({
-    //                 timeMinutes: request.body.timers[i]
-    //             })
-    //         }
-    //     })
-    // }
+            //als activity nog timeactual heeft creer er 1
+            if(activity.timeActual === undefined || activity.timeActual === null){
+                console.log('if')
+                db.TimeActual.create({
+                    timeMinutes: timers[i].timer,
+                    activityId: activity.id
+                })
+                .catch(e => console.log(e))
+            }
+            //anders update het -- deze update functie werkt nog niet
+            else {
+                console.log('else')
+                activity.timeActual.update({
+                    timeMinutes: timers[i].timer
+                })
+                .catch(e => console.log(e))
+            }
+        })
+        .catch(e => console.log(e))
+    }
 })
 
 // Make connection with the server

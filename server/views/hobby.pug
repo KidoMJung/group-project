@@ -34,8 +34,8 @@ script.
 		}
 		console.log('setInterval')
 		console.log(timers)
-		$.post('/hobbyGoal', {timers: timers})
-	}, 1000)
+		$.post('/hobbyGoal', {timers: JSON.stringify(timers)})
+	}, 3000)
 
 
 script(src="../static/js/stopwatch.js")
