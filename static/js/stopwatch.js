@@ -27,6 +27,7 @@ function Stopwatch(elem) {
 		var time = new Date(timeInMilliseconds); //alleen local
 		var hours = (time.getHours()-1).toString();
 		var minutes = time.getMinutes().toString();
+		var seconds = time.getSeconds().toString();
 
 
 
@@ -38,8 +39,12 @@ function Stopwatch(elem) {
 			minutes = '0' + minutes;
 		}
 
+		if (seconds.length < 2) {
+			seconds = '0' + seconds;
+		}
 
-		return hours + ' : ' + minutes
+
+		return hours + ' : ' + minutes + ' : ' + seconds
 
 	}
 

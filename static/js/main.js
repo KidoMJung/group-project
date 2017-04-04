@@ -16,11 +16,10 @@ toggleButtons = []
 for (var i = 0; i < amountOfButtons.length; i++) {
 	toggleButtons.push(document.getElementById('toggle' + [i]));
 	timer.push(document.getElementById('timer' + i));
-	console.log(Stopwatch)
+	
 	var  newWatch = new Stopwatch(timer[i])
 	watch.push(newWatch)
-	console.log ('Logging NewWatch' + i)
-	console.log (newWatch)
+	
 	toggleButtons[i].addEventListener('click', function callStopwatch(event) {
 
 		//this.id gives "toggle0" (for example) 

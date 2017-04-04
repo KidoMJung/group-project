@@ -90,7 +90,7 @@ app.post('/login', (request, response) => {
              bcrypt.compare(request.body.password, user.password, (err, result) => {
                  if(result === true){
                     request.session.user = user;
-			        response.redirect('profile');
+			        response.redirect('/hobby'); /////////// => Veranderd naar hobby i.p.v. profile voor development!!!
                   }
              });
 		} else {
@@ -250,14 +250,20 @@ app.post('/hobby', function (request, response) {
             name : request.body.hobby,
             cat: 2,
             userId: request.session.user.id,
+       })
+            db.TimeActual.create({
+                timeMinutes: 0,
+                // activityId: ID
         })
-        console.log('ccreated new activity')
+            .then(created => {
+                response.redirect('/hobby')
+            }) 
     } else {
-        response.redirect('/hobby')
+        response.redirect('login')
         console.log('//////////////////////////////////')
         console.log('no session dickheads')
     }
-
+    //if
 });
 
 
@@ -302,42 +308,45 @@ app.post('/travel', function (request, response) {
 });
 
 
-app.post('/hobbyGoal', function(request, response){
-    //uitdaging zorg dat de ajax request wordt gelogd
-    // console.log(request.body)
-    // console.log(JSON.parse(request.body.timers))
-    const timers = JSON.parse(request.body.timers)
+// app.post('/hobbyGoal', function(request, response){
+//     //uitdaging zorg dat de ajax request wordt gelogd
+//     // console.log(request.body)
+//     // console.log(JSON.parse(request.body.timers))
+//     const timers = JSON.parse(request.body.timers)
+//     console.log(timers)
+//     console.log('///////////////// HobbyGoal reached')
 
-    for(let i = 0; i < timers.length; i++){
-        db.Activity.findOne({name: timers[i].activityName, include: [db.TimeActual]})
-        .then((activity) => {
-            console.log('timers[i]/activity')
-            // console.log(timers[i])
-            console.log(activity.timeActual)
-            // console.log('activity.timeActual')
-            // console.log(activity.timeActual)
+//     for(let i = 0; i < timers.length; i++){
+//         db.Activity.findOne({name: timers[i].activityName, include: [db.TimeActual]})
+//         .then((activity) => {
+//             console.log('timers[i]/activity')
+//             console.log('logging activity.timeActual')
+//             console.log(activity.timeActual)
+//             // console.log('activity.timeActual')
+//             // console.log(activity.timeActual)
 
-            //als activity nog timeactual heeft creer er 1
-            if(activity.timeActual === undefined || activity.timeActual === null){
-                console.log('if')
-                db.TimeActual.create({
-                    timeMinutes: timers[i].timer,
-                    activityId: activity.id
-                })
-                .catch(e => console.log(e))
-            }
-            //anders update het -- deze update functie werkt nog niet
-            else {
-                console.log('else')
-                activity.timeActual.update({
-                    timeMinutes: timers[i].timer
-                })
-                .catch(e => console.log(e))
-            }
-        })
-        .catch(e => console.log(e))
-    }
-})
+//             //als activity nog timeactual heeft creer er 1
+//             if(activity.timeActual === undefined || activity.timeActual === null){
+//                 console.log('if')
+//                 console.log('///////////////////////////////////// creating timeActual')
+//                 db.TimeActual.create({
+//                     timeMinutes: timers[i].timer,
+//                     activityId: activity.id
+//                 })
+//                 .catch(e => console.log(e))
+//             }
+//             //anders update het -- deze update functie werkt nog niet
+//             else {
+//                 console.log('else')
+//                 activity.timeActual.update({
+//                     timeMinutes: timers[i].timer.innerHTML
+//                 })
+//                 .catch(e => console.log(e))
+//             }
+//         })
+//         .catch(e => console.log(e))
+//     }
+// })
 
 // Make connection with the server
 app.listen(3000,() => {
