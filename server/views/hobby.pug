@@ -16,28 +16,33 @@ html
 			-}
 				
 
-//- script(src="../static/js/jquery-3.1.1.min.js")
-//- script.
-//- 	var activitiesLength = #{activities.length};
-//- 	var ListItems = []
-//- 		for (i = 0; i < ListItems.length ; i++){
-//- 			console.log('logging list items ' + Li)
-//- 		}
+script(src="../static/js/jquery-3.1.1.min.js")
+script.
+	console.log('??????????????????')
+	console.log(#{activities.length})	
+	var activitiesLength = #{activities.length};
+		console.log('///////////////////////////////')
+		console.log('logging: activitiesLength' + activitiesLength)	
+	var ListItems = []
+		for (i = 0; i < ListItems.length ; i++){
+			console.log('///////////??????????///////////')
+			console.log('logging list items ' + Li)
+		}
 
-//- 	setInterval(function(){
-//- 		var timers = []
-//- 		for(var i = 0; i < !{activities.length}; i++){
-//- 			timers.push({
-//- 				timer: document.getElementById('timer'+1).innerHTML,
-//- 				activityName: $('#toggle'+i).data('name')
-//- 			})
+	//- setInterval(function(){
+	//- 	var timers = []
+	//- 	for(var i = 0; i < !{activities.length}; i++){
+	//- 		timers.push({
+	//- 			timer: document.getElementById('timer'+1).innerHTML,
+	//- 			activityName: $('#toggle'+i).data('name')
+	//- 		})
 
-//- 			console.log('logging timer //////////////' + timer)
-//- 		}
-//- 		console.log('setInterval')
-//- 		console.log(timers)
-//- 		$.post('/hobbyGoal', '/hobby', 2{timers: JSON.stringify(timers)})
-//- 	}, 3000)
+	//- 		console.log('logging timer //////////////' + timer)
+	//- 	}
+	//- 	console.log('setInterval')
+	//- 	console.log(timers)
+	//- 	$.post('/hobbyGoal', 2{timers: JSON.stringify(timers)})
+	//- }, 3000)
 
 
 script(src="../static/js/stopwatch.js")
