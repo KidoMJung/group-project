@@ -165,7 +165,7 @@ app.get('/work', function (request, response) {
 });
 
 
-//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  REDIRECTED TO HOBBY FOR DEV PURPOSES!!!!!!!!!!
+//HOBBY
 app.get('/hobby', function (request, response) {
     const user = request.session.user
     if(user)
@@ -250,10 +250,14 @@ app.post('/hobby', function (request, response) {
             name : request.body.hobby,
             cat: 2,
             userId: request.session.user.id,
-       })
+       }).then(activity => {
+
             db.TimeActual.create({
                 timeMinutes: 0,
+                activityId: activity.id,
+                userId: user.id,
                 // activityId: ID
+            })
         })
             .then(created => {
                 response.redirect('/hobby')
@@ -310,6 +314,8 @@ app.post('/travel', function (request, response) {
 
 app.post('/hobbyGoal', function(request, response){
     var user = request.session.user
+    // console.log('logging timers @ POST: /hobbyGoal')
+    // console.log(timers)
     //uitdaging zorg dat de ajax request wordt gelogd
     // console.log(request.body)
     // console.log(JSON.parse(request.body.timers))
@@ -319,10 +325,12 @@ app.post('/hobbyGoal', function(request, response){
 
     for(let i = 0; i < timers.length; i++){
         db.Activity.findOne({name: timers[i].activityName, include: [db.TimeActual]})
+        db.Activity.findOne({name: timers[i].activityName, include: [db.TimeActual]})
+        console.log('logging timeActual.....>>>>>>>>>>')
         .then((activity) => {
             console.log('timers[i]/activity')
             console.log('logging activity.timeActual')
-            console.log(activity.timeActual)
+            // console.log(activity.timeActual)
             // console.log('activity.timeActual')
             // console.log(activity.timeActual)
 
@@ -333,7 +341,7 @@ app.post('/hobbyGoal', function(request, response){
                 db.TimeActual.create({
                     timeMinutes: timers[i].timer,
                     activityId: activity.id,
-                    userId: req.session.user.id
+                    userId: request.session.user.id
                 })
                 .catch(e => console.log(e))
             }
