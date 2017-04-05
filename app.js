@@ -250,18 +250,11 @@ app.post('/hobby', function (request, response) {
             name : request.body.hobby,
             cat: 2,
             userId: request.session.user.id,
-       }).then(activity => {
-
-            db.TimeActual.create({
-                timeMinutes: 0,
-                activityId: activity.id,
-                userId: user.id,
-                // activityId: ID
-            })
         })
-            .then(created => {
-                response.redirect('/hobby')
-            }) 
+        .then(created => {
+            response.redirect('/hobby')
+        }) 
+
     } else {
         response.redirect('login')
         console.log('//////////////////////////////////')
@@ -313,29 +306,24 @@ app.post('/travel', function (request, response) {
 
 
 app.post('/hobbyGoal', function(request, response){
-    var user = request.session.user
-    // console.log('logging timers @ POST: /hobbyGoal')
-    // console.log(timers)
     //uitdaging zorg dat de ajax request wordt gelogd
-    // console.log(request.body)
-    // console.log(JSON.parse(request.body.timers))
+    var user = request.session.user
+    // console.log(request.body.timers)
     const timers = JSON.parse(request.body.timers)
-    console.log(timers)
-    console.log('///////////////// HobbyGoal reached')
+    // console.log(timers)
+    // console.log('///////////////// HobbyGoal reached')
+    
 
     for(let i = 0; i < timers.length; i++){
+        // console.log('logging timers[i].....>>>>>>>>>>')
+        // console.log(timers[i])
         db.Activity.findOne({name: timers[i].activityName, include: [db.TimeActual]})
-        db.Activity.findOne({name: timers[i].activityName, include: [db.TimeActual]})
-        console.log('logging timeActual.....>>>>>>>>>>')
-        .then((activity) => {
-            console.log('timers[i]/activity')
-            console.log('logging activity.timeActual')
-            // console.log(activity.timeActual)
-            // console.log('activity.timeActual')
-            // console.log(activity.timeActual)
 
+        .then( (activity) => {
+            // console.log('logging activity @ app.js 329')
+            // console.log(activity)
             //als activity nog timeactual heeft creer er 1
-            if(activity.timeActual === undefined || activity.timeActual === null){
+            if(activity.timeactual === undefined || activity.timeactual === null){
                 console.log('if')
                 console.log('///////////////////////////////////// creating timeActual')
                 db.TimeActual.create({
@@ -348,9 +336,12 @@ app.post('/hobbyGoal', function(request, response){
             //anders update het -- deze update functie werkt nog niet
             else {
                 console.log('else')
-                activity.timeActual.update({
-                    timeMinutes: timers[i].timer.innerHTML
+                console.log(timers[i].timer)
+                activity.timeactual.update({
+                    timeMinutes: timers[i].timer
                 })
+                // console.log('logging : ' + activity.timeactual)
+                // console.log(activity.timeactual)
                 .catch(e => console.log(e))
             }
         })

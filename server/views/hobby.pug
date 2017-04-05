@@ -36,12 +36,10 @@ script.
 				timer: document.getElementById('timer'+i).innerHTML,
 				activityName: $('#toggle'+i).data('name')
 			})
-			//- console.log(timers[i].activityName)
-			//- console.log('logging timer //////////////' + timer)
+			console.log('%%%%%%%%%%%%%%%%timer activated %%%%%%%%%%%%%%%%%%%%')
 		}
-			console.log(timers)
 		$.post('/hobbyGoal', {timers: JSON.stringify(timers)})
-	}, 3000)
+	}, 60000)
 
 
 script(src="../static/js/stopwatch.js")

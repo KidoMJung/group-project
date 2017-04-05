@@ -40,7 +40,7 @@ db.TimeActual = db.define('timeactual', {
 db.User.hasMany(db.Activity);
 db.Activity.belongsTo(db.User)
 
-db.Activity.hasOne(db.TimeActual);
+db.Activity.hasMany(db.TimeActual);
 db.TimeActual.belongsTo(db.Activity);
 
 // db.Activity.hasOne(db.Goal);
