@@ -23,11 +23,11 @@ html(lang='en')
                             .group
                                 label.label(for='user') Username
                                 |  
-                                input#user.input(name='email', type='text') 
+                                input#user.input(name='email', type='text' value='1') 
                             .group
                                 label.label(for='password') Password
                                 |  
-                                input#password.input(name= 'password', type='password', data-type='password')
+                                input#password.input(name= 'password', type='password', data-type='password', value='1')
                             .group
                                 input#check.check(type='checkbox', checked='')
                                 label(for='check')
@@ -62,9 +62,12 @@ html(lang='en')
                             .foot-lnk
                                 label(for='tab-1') Already Member?
 
-            //- script.
-            //-     document.getElementById('name').value="123"
-            //-     document.getElementById('password').value="123"
+//- script.
+//-                 //- document.getElementById(#user.input).value="1"
+//-     document.getElementById('#user.input').value='1'
+
+//-                 //- document.getElementById(#password.input).value="1"
+//-     document.getElementById('#password.input').value='1'
 
 
 

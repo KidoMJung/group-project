@@ -90,7 +90,7 @@ app.post('/login', (request, response) => {
              bcrypt.compare(request.body.password, user.password, (err, result) => {
                  if(result === true){
                     request.session.user = user;
-			        response.redirect('profile');
+			        response.redirect('/hobby'); /////////// => Veranderd naar hobby i.p.v. profile voor development!!!
                   }
              });
 		} else {
@@ -165,7 +165,7 @@ app.get('/work', function (request, response) {
 });
 
 
-//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  REDIRECTED TO HOBBY FOR DEV PURPOSES!!!!!!!!!!
+//HOBBY
 app.get('/hobby', function (request, response) {
     const user = request.session.user
     if(user)
@@ -251,13 +251,16 @@ app.post('/hobby', function (request, response) {
             cat: 2,
             userId: request.session.user.id,
         })
-        console.log('ccreated new activity')
+        .then(created => {
+            response.redirect('/hobby')
+        }) 
+
     } else {
-        response.redirect('/hobby')
+        response.redirect('login')
         console.log('//////////////////////////////////')
         console.log('no session dickheads')
     }
-
+    //if
 });
 
 
@@ -304,34 +307,41 @@ app.post('/travel', function (request, response) {
 
 app.post('/hobbyGoal', function(request, response){
     //uitdaging zorg dat de ajax request wordt gelogd
-    // console.log(request.body)
-    // console.log(JSON.parse(request.body.timers))
+    var user = request.session.user
+    // console.log(request.body.timers)
     const timers = JSON.parse(request.body.timers)
+    // console.log(timers)
+    // console.log('///////////////// HobbyGoal reached')
+    
 
     for(let i = 0; i < timers.length; i++){
+        // console.log('logging timers[i].....>>>>>>>>>>')
+        // console.log(timers[i])
         db.Activity.findOne({name: timers[i].activityName, include: [db.TimeActual]})
-        .then((activity) => {
-            console.log('timers[i]/activity')
-            // console.log(timers[i])
-            console.log(activity.timeActual)
-            // console.log('activity.timeActual')
-            // console.log(activity.timeActual)
 
+        .then( (activity) => {
+            // console.log('logging activity @ app.js 329')
+            // console.log(activity)
             //als activity nog timeactual heeft creer er 1
-            if(activity.timeActual === undefined || activity.timeActual === null){
+            if(activity.timeactual === undefined || activity.timeactual === null){
                 console.log('if')
+                console.log('///////////////////////////////////// creating timeActual')
                 db.TimeActual.create({
                     timeMinutes: timers[i].timer,
-                    activityId: activity.id
+                    activityId: activity.id,
+                    userId: request.session.user.id
                 })
                 .catch(e => console.log(e))
             }
             //anders update het -- deze update functie werkt nog niet
             else {
                 console.log('else')
-                activity.timeActual.update({
+                console.log(timers[i].timer)
+                activity.timeactual.update({
                     timeMinutes: timers[i].timer
                 })
+                // console.log('logging : ' + activity.timeactual)
+                // console.log(activity.timeactual)
                 .catch(e => console.log(e))
             }
         })

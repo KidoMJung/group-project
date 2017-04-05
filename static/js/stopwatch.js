@@ -30,6 +30,7 @@ function Stopwatch(elem) {
 
 
 
+
 		if (hours.length < 2) {
 			hours = '0' + hours;
 		}
@@ -38,8 +39,7 @@ function Stopwatch(elem) {
 			minutes = '0' + minutes;
 		}
 
-
-		return hours + ' : ' + minutes
+		return hours + ' : ' + minutes 
 
 	}
 

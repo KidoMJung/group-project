@@ -19,39 +19,46 @@ db.Activity = db.define('activities', {
     userId: Sequelize.INTEGER
 });
 
-db.TimeActual = db.define('timeActual', {
+db.TimeActual = db.define('timeactual', {
 	timeMinutes: Sequelize.STRING,
+    activityId: Sequelize.INTEGER,
+    userId:    Sequelize.INTEGER
 });
 
-db.Goal = db.define('goal', {
-    // name: Sequelize.STRING,
-    // cat: Sequelize.INTEGER,
-    time: Sequelize.INTEGER,
-    // userId: Sequelize.INTEGER
-});
+// db.Goal = db.define('goal', {
+//     // name: Sequelize.STRING,
+//     // cat: Sequelize.INTEGER,
+//     time: Sequelize.INTEGER,
+//     // userId: Sequelize.INTEGER
+// });
 
-db.Calender = db.define('weekNumber', {
-	WeekNumber : Sequelize.INTEGER,
-});
+// db.Calender = db.define('weekNumber', {
+// 	WeekNumber : Sequelize.INTEGER,
+// });
 
 //RELATIONS
 db.User.hasMany(db.Activity);
 db.Activity.belongsTo(db.User)
 
-db.Activity.hasOne(db.TimeActual);
+db.Activity.hasMany(db.TimeActual);
 db.TimeActual.belongsTo(db.Activity);
 
-db.Activity.hasOne(db.Goal);
-db.Goal.belongsTo(db.Activity);
+// db.Activity.hasOne(db.Goal);
+// db.Goal.belongsTo(db.Activity);
 
-db.TimeActual.hasOne(db.Calender);
-db.Calender.belongsTo(db.TimeActual);
+// db.TimeActual.hasOne(db.Goal);
+// db.Goal.belongsTo(db.TimeActual);
+
+// db.TimeActual.hasOne(db.Calender);
+// db.Calender.belongsTo(db.TimeActual);
 
 // db.Goals.hasOne(db.Calender);
 // db.Calender.belongsTo(db.Goals);
+db.User.hasMany(db.TimeActual)
+db.TimeActual.belongsTo(db.User)
 
-db.User.hasMany(db.Goal)
-db.Goal.belongsTo(db.User)
+// db.User.hasMany(db.Goal)
+// db.Goal.belongsTo(db.User)
 
 
 
@@ -60,27 +67,27 @@ db.sync(
 )
     .then(function(db) {
         const user1 = {
-            name: 'klaas',
-            email: 'klaas@gmail.com',
-            password: 'klaas123'
+            name: '1',
+            email: '1',
+            password: '$2a$08$53WVTHDeOExHVAL4hSEtneWl9r5Yyw/CldVCLmIywH9eJHMHD84f6'
         }
         db.User.create(user1)
     })
-    .then(function(user1) {
-        const activity1 = {
-            name: 'Cooking',
-            cat: 2,
+    // .then(function(user1) {
+    //     const activity1 = {
+    //         name: 'Cooking',
+    //         cat: 2,
 
-        }
-        db.Activity.create(activity1)
+    //     }
+    //     db.Activity.create(activity1)
 
-        const activity2 = {
-            name: 'Baking',
-            cat: 2,
+    //     const activity2 = {
+    //         name: 'Baking',
+    //         cat: 2,
 
-        }
-        db.Activity.create(activity2)
-    })
+    //     }
+    //     db.Activity.create(activity2)
+    // })
     .catch( (error) => console.log(error));
 
 
